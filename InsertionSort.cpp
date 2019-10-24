@@ -16,6 +16,11 @@ int main() {
     for (int i = 0; i < v.size(); i++) {
         v[i] = rand() % 100;
     }
+    //generate Linked List of random integers
+    for (int i = 0; i < v.size(); i++){
+        Node* head =  new Node(v.at(i));
+
+    }
 
     // binary insertion sort
     insertionSort(v, v.size());
@@ -29,6 +34,10 @@ int main() {
     for (int i = 0; i < v.size(); i++) {
         cout << v[i] << endl;
     }
+
+    //using the linkedlist
+
+
 
     // FINISH ME
 
