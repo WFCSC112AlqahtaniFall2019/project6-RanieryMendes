@@ -18,8 +18,35 @@ LinkedList :: LinkedList() {
 
 LinkedList::LinkedList(const LinkedList &origList) {
 
-    cout << "Copy Constructor\n";
-
+    {
+        this->head = 0;               // calling list head
+        Node *tempHead = origList.head;  /*For temprory store of head of link list*/
+        while (tempHead != 0) {
+            this->insertAtEnd(tempHead->value);
+            tempHead = tempHead->next;
+        }
+    }
+}
+void LinkedList :: insertAtEnd(int val){
+    {
+        Node* temp = new Node;
+        temp->value = val;
+        temp->next = 0;
+        Node* curr = this->head;
+        if (curr != 0)
+        {
+            while (curr->next != 0)
+            {
+                curr = curr->next;
+            }
+            curr->next = temp;
+        }
+        else
+        {
+            this->head = temp;
+        }
+    }
+/*
     head = new Node (origList.head->value, nullptr);
     Node* traceNewList = head;
 
@@ -32,7 +59,7 @@ LinkedList::LinkedList(const LinkedList &origList) {
         cursor = cursor->next;
 
     }
-
+*/
 
 /*
     head = new Node(origList.head->value, nullptr);
@@ -106,12 +133,14 @@ cout << "Locked in the Copy Constructor while loop" << endl;
     LinkedList tmp(rhs);
     cursor = rhs.head;
 
-    while(cursor!=nullptr) {
+    while(cursor->next!=nullptr) {
 
         cout << " while loop LINKEDLIST" << endl;
         //v = tmp.v;
 
+
         swap(v, tmp.v); //built-in swap
+       cursor =  cursor->next;
     }
 
     return *this;
@@ -126,25 +155,24 @@ void LinkedList::setNext(Node *n) {
 int LinkedList::getValue() const {
     return v;
 }
-/*
+
 
 LinkedList ::~LinkedList() {
 cout << "Destructor called." << endl;
-
-delete head->next;
- //Node* post;
- //post = head;
-
-    while (post->next != nullptr) {
-        Node* fordel = post;
-        post = post->next; //secure it is not going to delete the whole linked list
-        delete fordel;
-
+    // pointer which always points to the next node within our list
+    Node *next;
+    // keep going until header does not equal NULL
+    while(head != NULL){
+        // advance to pointer to point to next node
+        next = head->next;
+        // delete node that header is pointing to
+        delete head;
+        // advance header to point to the next node
+        head = next;
     }
+}
 
-  // head = nullptr;
 
-  } */
 
 void LinkedList :: append( int item ) {
 
@@ -197,23 +225,29 @@ else {
     }
     cursor = nullptr;
 }
-\
 
+
+// sort the linked list
 void LinkedList ::InsertionSort( int size) {
 
-
+   // for loop  that makes the head iterates through the whole linked list sorting it
     for (int i = 0; i < size; ++i) {
 
-        Node *cursor = head;
-        cout << "Within the for loop of Insertion Sort N: " << i << endl;
 
-        while (cursor != nullptr ) {
-            cout << "here" << endl;
+        Node *cursor = head; // cursor to manage iteration through the linked list
 
-            Node *previous = cursor;
+       // iterate the current head through the whole linked list. It will changes as soon as
+       // the while loop finishes and the for loop iterates
+        while (cursor->next != nullptr ) {
 
+
+            Node *previous = cursor->next;
+
+            //compare values in the nodes
             if (cursor->value > previous->value) {
-                cout << "Im swaping" << endl;
+
+
+                // swaping the position of nodes in order to sort list
                 Node *tmp;
                 tmp = previous;
                 cursor = tmp;
@@ -221,11 +255,8 @@ void LinkedList ::InsertionSort( int size) {
 
             }
 
-            cursor->next;
+            cursor->next; // move to next node
 
-            if (cursor == nullptr){
-
-            }
 
 
         }

@@ -19,7 +19,7 @@ public:
     void append( int item );
     void InsertionSort(int size);
     void printList ()const;
-
+    void insertAtEnd(int val);
 
 private:
     Node* head;
