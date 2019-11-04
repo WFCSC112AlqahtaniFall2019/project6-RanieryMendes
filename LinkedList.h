@@ -12,14 +12,10 @@ public:
     LinkedList();
     LinkedList(const LinkedList &origList);
     ~LinkedList();
-    int getValue () const;
-    void setNext (Node* n);
-    void insertionAfter (Node* nextnode);
-     LinkedList& operator =(LinkedList& rhs);
+    LinkedList& operator =(LinkedList& rhs);
     void append( int item );
-    void InsertionSort(int size);
+    void   insertionSortList( );
     void printList ()const;
-    void insertAtEnd(int val);
 
 private:
     Node* head;

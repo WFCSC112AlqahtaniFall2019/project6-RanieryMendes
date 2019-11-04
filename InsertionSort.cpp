@@ -49,17 +49,21 @@ int main() {
 
     // print out sorted list
     for (int i = 0; i < v.size(); i++) {
-        cout << v[i] << endl;
+        cout << v[i] << " ";
     }
+    cout << endl;
 
-    cout << "Printing from the linkedlist" << endl;
+    cout << "Printing from the unsorted linkedlist" << endl;
 
     test.printList();
 
 
     cout << endl ;
 
-    two.printList();
+    test.insertionSortList();
+    cout << "Printing from the sorted LinkedList" << endl;
+
+    test.printList();
 
     // FINISH ME
 
